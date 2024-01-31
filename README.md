@@ -9,12 +9,13 @@ The goal of this task is to create a 15 puzzle. A 15 puzzle is a sliding puzzle 
 ### The puzzle must be implemented the following way:
 
 1. On page load tiles order should be randomized.
-2. The board size (number of columns and rows) should be configurable, and support a rectangular configuration (M x N board size) 3. The tile size should be configurable.
-3. Must be performant for a large grid (e.g above 30x30).
-4. Should support adding multiple boards.
-5. Validity checks. Every board should be solvable.
-6. A success message should be displayed when all the elements are reordered properly.
-7. Tiles should be animated and slide to the designated area (Nice to have).
+2. The board size (number of columns and rows) should be configurable, and support a rectangular configuration (M x N board size
+3. The tile size should be configurable.
+4. Must be performant for a large grid (e.g above 30x30).
+5. Should support adding multiple boards.
+6. Validity checks. Every board should be solvable.
+7. A success message should be displayed when all the elements are reordered properly.
+8. Tiles should be animated and slide to the designated area (Nice to have).
 
 ### UI Requirements
 
