@@ -7,3 +7,20 @@ body {
 body {
   font-family: "Roboto", sans-serif;
 }
+
+/* TODO: Move this to tile.css */
+
+.tile {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background-color: blue;
+  color: white;
+}
+
+.empty-tile {
+  background-color: white;
+}
