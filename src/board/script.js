@@ -35,11 +35,24 @@ class Board {
         this.#tiles[rowIndex].push(tile);
 
         const tileElement = tile.render();
-        tileElement.addEventListener("click", () => this.#moveTile(tile));
+        tileElement.addEventListener("click", () => {
+          this.#moveTile(tile);
+        });
 
         this.#target.appendChild(tileElement);
       });
     });
+  }
+
+  solved() {
+    let solved = true;
+    this.#numbers
+      .flat()
+      .slice(0, -1)
+      .forEach((number, index) => {
+        if (number !== index + 1) solved = false;
+      });
+    return solved;
   }
 
   #moveTile(tile) {
@@ -56,8 +69,6 @@ class Board {
 
       this.#tiles[rowIndex][columnIndex] =
         this.#tiles[rowIndex][columnIndex - 1];
-
-      console.log(left, width, left - width);
 
       tile.left = left - width;
       this.#tiles[rowIndex][columnIndex - 1].left = left;
@@ -77,7 +88,6 @@ class Board {
       this.#tiles[rowIndex][columnIndex] =
         this.#tiles[rowIndex][columnIndex + 1];
 
-      console.log(left, width, left + width);
       tile.left = left + width;
       this.#tiles[rowIndex][columnIndex + 1].left = left;
 
@@ -96,7 +106,6 @@ class Board {
       this.#tiles[rowIndex][columnIndex] =
         this.#tiles[rowIndex - 1][columnIndex];
 
-      console.log(top, height, top - height);
       tile.top = top - height;
       this.#tiles[rowIndex - 1][columnIndex].top = top;
 
@@ -115,7 +124,6 @@ class Board {
       this.#tiles[rowIndex][columnIndex] =
         this.#tiles[rowIndex + 1][columnIndex];
 
-      console.log(top, height, top + height);
       tile.top = top + height;
       this.#tiles[rowIndex + 1][columnIndex].top = top;
 
