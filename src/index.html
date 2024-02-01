@@ -10,20 +10,83 @@
       rel="stylesheet"
     />
 
-    <link rel="stylesheet" href="css/reset.css" />
-    <link rel="stylesheet" href="css/main.css" />
-    <link rel="stylesheet" href="css/button.css" />
+    <link rel="stylesheet" href="_css/reset.css" />
+    <link rel="stylesheet" href="_css/main.css" />
+    <link rel="stylesheet" href="ui/grid.css" />
+    <link rel="stylesheet" href="ui/button.css" />
+    <link rel="stylesheet" href="ui/form.css" />
+    <link rel="stylesheet" href="ui/input.css" />
   </head>
   <body>
-    <header class="header"></header>
-    <main>
-      <div id="board" style="position: relative"></div>
-    </main>
+    <div class="main-wrapper">
+      <header>
+        <h1>Fifteen Puzzle</h1>
+      </header>
+      <main>
+        <div class="row">
+          <div class="column _40"></div>
+          <div class="column">
+            <div class="form-group">
+              <label>Boards</label>
+              <input id="boards-input" class="input" type="number" value="1" />
+            </div>
+            <div class="form-group">
+              <label>Rows</label>
+              <input id="rows-input" class="input" type="number" value="4" />
+            </div>
+            <div class="form-group">
+              <label>Columns</label>
+              <input id="columns-input" class="input" type="number" value="4" />
+            </div>
+            <div class="form-group">
+              <label>Tile Width</label>
+              <input
+                id="tile-width-input"
+                class="input"
+                type="number"
+                value="120"
+              />
+            </div>
+            <div class="form-group">
+              <label>Tile Height</label>
+              <input
+                id="tile-height-input"
+                class="input"
+                type="number"
+                value="120"
+              />
+            </div>
+            <div>
+              <button
+                id="start-game-button"
+                class="button button--block button--lg button--primary"
+              >
+                Start Game
+              </button>
+            </div>
+          </div>
+          <div class="column _40"></div>
+        </div>
+      </main>
+    </div>
 
-    <script type="text/javascript" src="js/utils.js"></script>
-    <script type="text/javascript" src="js/board.js"></script>
-    <script type="text/javascript" src="js/tile.js"></script>
-    <script type="text/javascript" src="js/game.js"></script>
-    <script type="text/javascript" src="js/main.js"></script>
+    <script type="text/javascript">
+      const boardsInput = document.getElementById("boards-input");
+      const rowsInput = document.getElementById("rows-input");
+      const columnsInput = document.getElementById("columns-input");
+      const tileWidthInput = document.getElementById("tile-width-input");
+      const tileHeightInput = document.getElementById("tile-height-input");
+      const startGameButton = document.getElementById("start-game-button");
+
+      startGameButton.addEventListener("click", () => {
+        window.localStorage.setItem("numberOfBoards", boardsInput.value);
+        window.localStorage.setItem("numberOfRows", rowsInput.value);
+        window.localStorage.setItem("numberOfColumns", columnsInput.value);
+        window.localStorage.setItem("tileWidth", tileWidthInput.value);
+        window.localStorage.setItem("tileHeight", tileHeightInput.value);
+
+        window.location.href = "game.html";
+      });
+    </script>
   </body>
 </html>

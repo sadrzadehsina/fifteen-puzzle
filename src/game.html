@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Fifteen Puzzle</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat&family=Roboto&family=Vazirmatn&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="_css/reset.css" />
+    <link rel="stylesheet" href="_css/main.css" />
+    <link rel="stylesheet" href="board/style.css" />
+    <link rel="stylesheet" href="tile/style.css" />
+    <link rel="stylesheet" href="ui/grid.css" />
+    <link rel="stylesheet" href="ui/button.css" />
+    <link rel="stylesheet" href="ui/form.css" />
+    <link rel="stylesheet" href="ui/input.css" />
+  </head>
+  <body>
+    <div class="main-wrapper">
+      <header class="header">
+        <h1>Fifteen Puzzle</h1>
+      </header>
+      <main>
+        <div id="boards-wrapper" class="row"></div>
+      </main>
+    </div>
+  </body>
+
+  <script type="text/javascript" src="_js/utils.js"></script>
+  <script type="text/javascript" src="tile/script.js"></script>
+  <script type="text/javascript" src="board/script.js"></script>
+  <script type="text/javascript" src="game/script.js"></script>
+
+  <script type="text/javascript">
+    const boards = parseInt(window.localStorage.getItem("numberOfBoards"));
+    const rows = parseInt(window.localStorage.getItem("numberOfRows"));
+    const columns = parseInt(window.localStorage.getItem("numberOfColumns"));
+    const tileWidth = parseInt(window.localStorage.getItem("tileWidth"));
+    const tileHeight = parseInt(window.localStorage.getItem("tileHeight"));
+
+    const boardsWrapper = document.getElementById("boards-wrapper");
+
+    const width = columns * (tileWidth + 16);
+    const height = rows * (tileHeight + 16);
+    console.log(width);
+
+    for (let i = 0; i < boards; i++) {
+      const newBoard = document.createElement("div");
+      newBoard.className = "board";
+      newBoard.style.width = `${width}px`;
+      newBoard.style.height = `${height}px`;
+
+      boardsWrapper.appendChild(newBoard);
+
+      const game = new Game({
+        board: {
+          target: newBoard,
+          rows,
+          columns,
+        },
+      });
+
+      game.start();
+    }
+  </script>
+</html>

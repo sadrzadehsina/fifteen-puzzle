@@ -1,0 +1,28 @@
+.tile {
+  position: absolute;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: blue;
+  border: 8px solid white;
+  cursor: pointer;
+  font-size: 150%;
+  z-index: 2;
+
+  transition: top 0.2s, left 0.2s;
+  -webkit-transition: top 0.2s, left 0.2s;
+}
+
+.tile:hover {
+  background-color: darkblue;
+}
+
+.empty-tile {
+  cursor: default;
+  background-color: white;
+  z-index: 1;
+}
+
+.empty-tile:hover {
+  background-color: white;
+}

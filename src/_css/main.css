@@ -1,0 +1,29 @@
+html,
+body {
+  width: 100%;
+  height: 100%;
+}
+
+body {
+  font-family: "Roboto", sans-serif;
+  background-color: #222;
+  color: #f9f9f9;
+}
+
+.main-wrapper {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.main-wrapper header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.main-wrapper main {
+  flex: 1;
+  padding: 2rem;
+}

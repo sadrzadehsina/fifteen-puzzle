@@ -1,0 +1,30 @@
+.row {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  gap: 4rem;
+}
+
+.column {
+  flex-basis: 100%;
+  position: relative;
+}
+
+@media screen and (min-width: 800px) {
+  .column {
+    flex: 1;
+  }
+  ._25 {
+    flex: 2.5;
+  }
+  ._33 {
+    flex: 3.3;
+  }
+  ._40 {
+    flex: 4;
+  }
+  ._50 {
+    flex: 5;
+  }
+}

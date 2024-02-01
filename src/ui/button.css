@@ -1,6 +1,11 @@
 .button {
-  padding: 6px 12px;
+  padding: 12px 24px;
   cursor: pointer;
+  border: none;
+}
+
+.button--block {
+  width: 100%;
 }
 
 .button--sm {
