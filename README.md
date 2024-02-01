@@ -9,7 +9,7 @@ The goal of this task is to create a 15 puzzle. A 15 puzzle is a sliding puzzle 
 ### The puzzle must be implemented the following way:
 
 1. On page load tiles order should be randomized.
-2. The board size (number of columns and rows) should be configurable, and support a rectangular configuration (M x N board size
+2. The board size (number of columns and rows) should be configurable, and support a rectangular configuration (M x N board size)
 3. The tile size should be configurable.
 4. Must be performant for a large grid (e.g above 30x30).
 5. Should support adding multiple boards.
@@ -26,10 +26,11 @@ Please implement the simple UI wireframes outlined below. Minimal styling is acc
 #### You may
 
 - Develop only for Chrome.
-- Use any feature available in the latest stable release of Chrome. - If you don't have time to implement the optional animation component, your code should still be written in a way that could potentially support it without major refactoring.
+- Use any feature available in the latest stable release of Chrome.
+- If you don't have time to implement the optional animation component, your code should still be written in a way that could potentially support it without major refactoring.
 - Use CSS animation for tiles animation.
 - Class-based architecture (ES6 classes preferred).
-- Assume that your code will be served from a simple web server
+- Assume that your code will be served from a simple web server.
 
 #### You must not
 
