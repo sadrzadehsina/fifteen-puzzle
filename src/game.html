@@ -57,8 +57,13 @@
     for (let i = 0; i < boards; i++) {
       const newBoard = document.createElement("div");
       const moves = document.createElement("div");
+      const shuffleButton = document.createElement("button");
+      const validStatus = document.createElement("div");
       const movesCount = document.createElement("div");
       const tiles = document.createElement("div");
+
+      shuffleButton.className = "button button--primary button--sm";
+      shuffleButton.innerHTML = "Shuffle";
 
       newBoard.className = "board";
       newBoard.style.width = `${width}px`;
@@ -66,17 +71,23 @@
 
       movesCount.innerHTML = 0;
 
+      validStatus.classList = "valid-status";
+
       moves.className = "moves";
       moves.innerHTML = "Moves: ";
       moves.appendChild(movesCount);
-
+      moves.appendChild(shuffleButton);
+      
       tiles.className = "tiles";
-
+      
       newBoard.appendChild(moves);
+      newBoard.appendChild(validStatus);
       newBoard.appendChild(tiles);
       boardsWrapper.appendChild(newBoard);
 
       const game = new Game({
+        shuffleButton,
+        validStatus,
         board: {
           target: tiles,
           moves: movesCount,

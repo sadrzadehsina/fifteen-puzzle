@@ -20,6 +20,8 @@ class Board extends EventTarget {
   }
 
   shuffle() {
+    this.#movesCount = 0;
+    this.#moves.innerHTML = this.#movesCount;
     this.#numbers = shuffleArray({
       array: this.#numbers,
       columns: this.#columns,
@@ -28,6 +30,7 @@ class Board extends EventTarget {
   }
 
   render() {
+    this.#target.innerHTML = "";
     this.#numbers.forEach((columns, rowIndex) => {
       this.#tiles[rowIndex] = [];
       columns.forEach((number, columnIndex) => {
@@ -174,5 +177,13 @@ class Board extends EventTarget {
 
     this.#checkSolved();
     this.#moves.innerHTML = this.#movesCount;
+  }
+
+  get numbers() {
+    return this.#numbers;
+  }
+
+  get rows() {
+    return this.#rows;
   }
 }
