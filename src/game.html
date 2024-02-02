@@ -20,9 +20,11 @@
     <link rel="stylesheet" href="ui/input.css" />
   </head>
   <body>
+    <div id="confetti-wrapper"></div>
     <div class="main-wrapper">
       <header class="header">
-        <h1>Fifteen Puzzle</h1>
+        <h1>15 Puzzle</h1>
+        <a href="index.html" class="button button--secondary">Restart Game</a>
       </header>
       <main>
         <div id="boards-wrapper" class="row"></div>
@@ -30,6 +32,11 @@
     </div>
   </body>
 
+  <script
+    type="text/javascript"
+    src="https://cdn.jsdelivr.net/npm/canvas-confetti@1"
+  ></script>
+  <script type="text/javascript" src="_js/celebration.js"></script>
   <script type="text/javascript" src="_js/utils.js"></script>
   <script type="text/javascript" src="tile/script.js"></script>
   <script type="text/javascript" src="board/script.js"></script>
@@ -49,15 +56,30 @@
 
     for (let i = 0; i < boards; i++) {
       const newBoard = document.createElement("div");
+      const moves = document.createElement("div");
+      const movesCount = document.createElement("div");
+      const tiles = document.createElement("div");
+
       newBoard.className = "board";
       newBoard.style.width = `${width}px`;
-      newBoard.style.height = `${height}px`;
+      newBoard.style.height = `${height + 20}px`;
 
+      movesCount.innerHTML = 0;
+
+      moves.className = "moves";
+      moves.innerHTML = "Moves: ";
+      moves.appendChild(movesCount);
+
+      tiles.className = "tiles";
+
+      newBoard.appendChild(moves);
+      newBoard.appendChild(tiles);
       boardsWrapper.appendChild(newBoard);
 
       const game = new Game({
         board: {
-          target: newBoard,
+          target: tiles,
+          moves: movesCount,
           rows,
           columns,
         },

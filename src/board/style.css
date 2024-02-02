@@ -1,4 +1,25 @@
+#boards-wrapper {
+  margin-bottom: 20rem;
+}
+
 .board {
+  background-color: #311B92;
+  border-radius: 30px;
+  display: flex;
+  flex-direction: column;
+}
+
+.moves {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-bottom: 2rem;
+  font-size: 130%;
+  background-color: #303F9F;
+  padding: 20px;
+  border-radius: 20px;
+}
+
+.tiles {
   position: relative;
-  background-color: white;
 }

@@ -2,6 +2,7 @@
   padding: 12px 24px;
   cursor: pointer;
   border: none;
+  text-decoration: none;
 }
 
 .button--block {
@@ -18,16 +19,16 @@
 
 .button--primary {
   color: white;
-  background-color: blue;
+  background-color: #304FFE;
 }
 .button--primary:hover {
-  background-color: darkblue;
+  background-color: #2962FF;
 }
 
 .button--secondary {
-  color: white;
-  background-color: green;
+  color: black;
+  background-color: #00C853;
 }
-.button-secondary:hover {
-  background-color: darkgreen;
+.button--secondary:hover {
+  background-color: #64DD17;
 }

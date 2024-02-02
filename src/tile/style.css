@@ -3,26 +3,38 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  background-color: blue;
-  border: 8px solid white;
+  background-color: #01579B;
+  border: 4px solid white;
   cursor: pointer;
-  font-size: 150%;
+  font-size: 200%;
+  font-weight: bolder;
   z-index: 2;
+
+  border-radius: 30px;
 
   transition: top 0.2s, left 0.2s;
   -webkit-transition: top 0.2s, left 0.2s;
 }
 
 .tile:hover {
-  background-color: darkblue;
+  background-color: #1A237E;
 }
 
 .empty-tile {
+  border: none;
   cursor: default;
-  background-color: white;
+  background-color: #311B92!important;
   z-index: 1;
 }
 
 .empty-tile:hover {
-  background-color: white;
+  background-color: #311B92 !important;
+}
+
+.solved {
+  background-color: #4CAF50;
+  cursor: default;
+}
+.solved:hover {
+  background-color: #4CAF50;
 }

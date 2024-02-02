@@ -1,12 +1,16 @@
-class Board {
+class Board extends EventTarget {
   #numbers = [];
   #tiles = [];
   #target;
+  #moves;
   #rows = 4;
   #columns = 4;
+  #movesCount = 0;
 
-  constructor({ target, columns, rows }) {
+  constructor({ target, moves, columns, rows }) {
+    super();
     this.#target = target;
+    this.#moves = moves;
     this.#columns = columns;
     this.#rows = rows;
   }
@@ -34,17 +38,18 @@ class Board {
         });
         this.#tiles[rowIndex].push(tile);
 
-        const tileElement = tile.render();
-        tileElement.addEventListener("click", () => {
+        tile.render();
+
+        tile.element.addEventListener("click", () => {
           this.#moveTile(tile);
         });
 
-        this.#target.appendChild(tileElement);
+        this.#target.appendChild(tile.element);
       });
     });
   }
 
-  solved() {
+  #checkSolved() {
     let solved = true;
     this.#numbers
       .flat()
@@ -52,7 +57,45 @@ class Board {
       .forEach((number, index) => {
         if (number !== index + 1) solved = false;
       });
-    return solved;
+
+    if (solved) {
+      // remove all event listeners, wait for the tile animation to complete
+      setTimeout(() => {
+        this.#tiles.flat().forEach((tile) => {
+          tile.element.classList.add("solved");
+          tile.element.replaceWith(tile.element.cloneNode(true));
+        });
+      }, 200);
+
+      // let game object know that board is solved
+      this.dispatchEvent(new Event("solved"));
+    }
+  }
+
+  #checkLeft({ rowIndex, columnIndex }) {
+    return (
+      this.#numbers[rowIndex] && this.#numbers[rowIndex][columnIndex - 1] === 0
+    );
+  }
+
+  #checkRight({ rowIndex, columnIndex }) {
+    return (
+      this.#numbers[rowIndex] && this.#numbers[rowIndex][columnIndex + 1] === 0
+    );
+  }
+
+  #checkTop({ rowIndex, columnIndex }) {
+    return (
+      this.#numbers[rowIndex - 1] &&
+      this.#numbers[rowIndex - 1][columnIndex] === 0
+    );
+  }
+
+  #checkBottom({ rowIndex, columnIndex }) {
+    return (
+      this.#numbers[rowIndex + 1] &&
+      this.#numbers[rowIndex + 1][columnIndex] === 0
+    );
   }
 
   #moveTile(tile) {
@@ -60,10 +103,7 @@ class Board {
 
     const number = this.#numbers[rowIndex][columnIndex];
 
-    if (
-      this.#numbers[rowIndex] &&
-      this.#numbers[rowIndex][columnIndex - 1] === 0
-    ) {
+    if (this.#checkLeft({ rowIndex, columnIndex })) {
       this.#numbers[rowIndex][columnIndex] = 0;
       this.#numbers[rowIndex][columnIndex - 1] = number;
 
@@ -77,11 +117,10 @@ class Board {
 
       tile.rowIndex = rowIndex;
       tile.columnIndex = columnIndex - 1;
+
+      this.#movesCount++;
     }
-    if (
-      this.#numbers[rowIndex] &&
-      this.#numbers[rowIndex][columnIndex + 1] === 0
-    ) {
+    if (this.#checkRight({ rowIndex, columnIndex })) {
       this.#numbers[rowIndex][columnIndex] = 0;
       this.#numbers[rowIndex][columnIndex + 1] = number;
 
@@ -95,11 +134,10 @@ class Board {
 
       tile.rowIndex = rowIndex;
       tile.columnIndex = columnIndex + 1;
+
+      this.#movesCount++;
     }
-    if (
-      this.#numbers[rowIndex - 1] &&
-      this.#numbers[rowIndex - 1][columnIndex] === 0
-    ) {
+    if (this.#checkTop({ rowIndex, columnIndex })) {
       this.#numbers[rowIndex][columnIndex] = 0;
       this.#numbers[rowIndex - 1][columnIndex] = number;
 
@@ -113,11 +151,10 @@ class Board {
 
       tile.rowIndex = rowIndex - 1;
       tile.columnIndex = columnIndex;
+
+      this.#movesCount++;
     }
-    if (
-      this.#numbers[rowIndex + 1] &&
-      this.#numbers[rowIndex + 1][columnIndex] === 0
-    ) {
+    if (this.#checkBottom({ rowIndex, columnIndex })) {
       this.#numbers[rowIndex][columnIndex] = 0;
       this.#numbers[rowIndex + 1][columnIndex] = number;
 
@@ -131,6 +168,11 @@ class Board {
 
       tile.rowIndex = rowIndex + 1;
       tile.columnIndex = columnIndex;
+
+      this.#movesCount++;
     }
+
+    this.#checkSolved();
+    this.#moves.innerHTML = this.#movesCount;
   }
 }

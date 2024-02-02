@@ -8,6 +8,7 @@ body {
   font-family: "Roboto", sans-serif;
   background-color: #222;
   color: #f9f9f9;
+  background-color: #311B92;
 }
 
 .main-wrapper {
@@ -19,8 +20,10 @@ body {
 
 .main-wrapper header {
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
+  font-size: 200%;
 }
 
 .main-wrapper main {

@@ -29,8 +29,6 @@ class Tile {
     tile.style.height = `${this.#tile.height}px`;
 
     this.#tile.element = tile;
-
-    return tile;
   }
 
   get element() {
