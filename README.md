@@ -48,7 +48,8 @@ Please implement the simple UI wireframes outlined below. Minimal styling is acc
 
 **Your code should be performant:**
 
-Gives feedback to the user as soon as possible (perceived performance) ? UI remains responsive
+- Gives feedback to the user as soon as possible (perceived performance)
+- UI remains responsive
 
 **Submit your project:**  
 You can add your project to github or any other provider and send us the project URL.
